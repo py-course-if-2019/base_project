@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ {% load bootstrap4 %}
+    {% load crispy_forms_tags %}
+    <script src="{% bootstrap_jquery_url %}"></script>
+    {% bootstrap_javascript %}
+    {% bootstrap_css %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .form {
+        width:600px;
+        margin:0 auto;
+        }
+        .asteriskField {
+        color:red}
+    </style>
+</head>
+<body>
+<div class="content-section">
+    <form method="POST" class="form reg">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Join Today
+
+            </legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sing UP</button>
+        </div>
+          <div class="border-top pt-3">
+        <small class="text-muted">
+            Alredy Have An Account? <a class="ml-2" href="#">Sign in</a>
+        </small>
+    </div>
+    </form>
+
+</div>
+</body>
+</html>

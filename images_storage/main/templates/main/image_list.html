@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for img in object_list %}
+    <a href="{{ img.original_image.url }}">img</a>
+{% endfor %}
+{% endblock %}

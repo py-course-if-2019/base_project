@@ -2,20 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     {% load bootstrap4 %}
-    <script src="{% bootstrap_jquery_url %}"></script>
-    {% bootstrap_javascript %}
-    {% bootstrap_css %}
-    {% if title %}
-    <title>Image Storage - {{title}}</title>
-    {% else %}
-    <title>Image Storage</title>
-    {% endif %}
+    <title>Головна сторінка</title>
+    <style>
+        *{
+           padding:0;
+           margin:0;
+           height:80vh;
+        }
+        header{
+            height:40px;
+            padding:3vh;
+            background-color:#f6f6f6;
+            display:flex;
+            justify-content:space-around;
+        }
+        .sub-block a{
+        margin-left:3vh;
+        color:#777;
+        font-size:1.7rem;
+        text-decoration:none;
+        }
+        .main-block {
+        width:100%;
+        display:flex;
+        justify-content:center;
+        }
+        .btn {
+            padding:5vh 10vh;
+            background-color:orange;
+            border:none;
+            cursor:pointer;
+            margin:0 auto;
+            align-self:center;
+            outline:none;
+            color:white;
+            font-size:32px;
+            height:200px;
+
+        }
+    </style>
 </head>
 <body>
-
+{% block content %}
+{% endblock content %}
 </body>
 </html>

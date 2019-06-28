@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
  {% load bootstrap4 %}
-    {% load crispy_forms_tags %}
     <script src="{% bootstrap_jquery_url %}"></script>
     {% bootstrap_javascript %}
     {% bootstrap_css %}
@@ -67,25 +66,16 @@
         <a href="{% url 'register' %}">Зареєструватись</a>
         </div>
     </header>
-<div class="content-section">
-    <form method="POST" class="form reg">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">
-                Приєднуйся до нас!
-            </legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Зареєструватись</button>
-        </div>
-          <div class="border-top pt-3">
-        <small class="text-muted">
-           Маєте аккаунт? <a class="ml-2" href="{% url 'login' %}">Ввійти</a>
-        </small>
-    </div>
-    </form>
+ <div class="form">
+<h2>You have been logged out</h2>
+ <div class="border-top pt-3">
+     <small class="text-muted">
+         <a class="ml-2" href="{% url 'login' %}">Увійти знову</a>
+     </small>
+ </div>
+ </div>
 
-</div>
+
+
 </body>
 </html>

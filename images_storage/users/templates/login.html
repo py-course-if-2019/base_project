@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:social="http://www.w3.org/1999/xhtml">
 <head>
  {% load bootstrap4 %}
     {% load crispy_forms_tags %}
@@ -72,16 +72,19 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">
-                Приєднуйся до нас!
+                Підключайся до нас!
             </legend>
             {{ form|crispy }}
+            <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+            <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Зареєструватись</button>
+            <button class="btn btn-outline-info" type="submit">Увійти</button>
         </div>
           <div class="border-top pt-3">
         <small class="text-muted">
-           Маєте аккаунт? <a class="ml-2" href="{% url 'login' %}">Ввійти</a>
+          Відсутній аккаунт? <a class="ml-2" href="{% url 'register' %}">Зареєструйся зараз</a>
         </small>
     </div>
     </form>

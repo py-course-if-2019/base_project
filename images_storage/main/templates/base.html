@@ -16,7 +16,7 @@
             display:flex;
             justify-content:space-around;
         }
-        .sub-block a{
+        .sub-block a, span{
         margin-left:3vh;
         color:#777;
         font-size:1.7rem;
@@ -27,7 +27,7 @@
         display:flex;
         justify-content:center;
         }
-        .btn {
+        .btn-b {
             padding:5vh 10vh;
             background-color:orange;
             border:none;
@@ -38,19 +38,51 @@
             color:white;
             font-size:32px;
             height:200px;
-
         }
+           .images{
+            display:flex;
+            flex-direction:row;
+            flex-wrap:wrap;
+            justify-content:space-around;
+            margin-top:6vh;
+           }
+           .img {
+                max-width:400px;
+                max-height:300px;
+
+                }
+            img {
+                width:100%;
+                height:100%;
+                border-radius:10px;
+                transition:500ms;
+
+               }
+               @keyframes rotating {
+                 0%  { transform: rotate(0deg);}
+                 100%{ transform: rotate(360deg);}
+                    }
+              .img:hover {
+                opacity:0.7;
+                transition:500ms;
+                animation: rotating 4s linear infinite;
+              }
     </style>
 </head>
 <body>
     <header>
         <div class="sub-block">
-        <a href="">Головна</a>
+        <a href="{% url 'main' %}">Головна</a>
         <a href="{% url 'images' %}">Всі зображення</a>
         </div>
         <div class="sub-block">
-        <a href="">Ввійти</a>
-        <a href="">Зареєструватись</a>
+        {% if user.is_authenticated %}
+            <span>Привіт {{user.username}}</span>
+            <a href="{% url 'logout' %}">Вийти</a>
+        {%else %}
+        <a href="{% url 'login' %}">Ввійти</a>
+        <a href="{% url 'register' %}">Зареєструватись</a>
+         {% endif %}
         </div>
     </header>
 {% block content %}

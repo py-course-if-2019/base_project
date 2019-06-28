@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="images">
 {% for img in object_list %}
-    <a href="{{ img.original_image.url }}">img</a>
+
+ <div class="img">
+     <a href="{{ img.original_image.url }}">
+       <img src="{{ img.original_image.url }}" alt="">
+     </a>
+ </div>
+
+
 {% endfor %}
-{% endblock %}
+</div>
+    {% endblock %}

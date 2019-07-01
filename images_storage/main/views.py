@@ -1,24 +1,40 @@
-import time
-from importlib.resources import Package
-
-from django.http import request
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views import View
+from django.views.generic import ListView, CreateView
 from .models import Image
+from django.forms import ModelForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .tasks import add
+from .models import Image
 
 
 def main(request):
     return render(request, 'main/index.html')
 
 
+class ImageUploadForm(ModelForm):
+    class Meta:
+        model = Image
+        fields = ['original_image']
+
+
+class ImageUploadView(View):
+    model = Image
+
+    def post(self, request, *args, **kwargs):
+        if self.request.FILES:
+            for f in self.request.FILES.getlist('files'):
+                obj = self.model.objects.create(original_image=f)
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/index.html')
+
+
 class ImageListView(ListView):
     model = Image
     template_name = "main/image_list.html"
     paginate_by = 8
-
 
     def get_context_data(self, **kwargs):
         context = super(ImageListView, self).get_context_data(**kwargs)

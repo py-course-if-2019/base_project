@@ -9,8 +9,22 @@
        <img src="{{ img.original_image.url }}" alt="">
      </a>
  </div>
-
-
-{% endfor %}
+{%endfor%}
 </div>
-    {% endblock %}
+{% if is_paginated %}
+<div class="pagination">
+{% if page_obj.has_previous %}
+
+        <span><a href="?page={{ page_obj.previous_page_number }}">Попередня</a></span>
+
+{% endif %}
+        <span>Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}.</span>
+
+{% if page_obj.has_next %}
+        <span><a href="?page={{ page_obj.next_page_number }}">Наступна</a></span>
+{% endif %}
+{% else %}
+        </div>
+    <h3>END</h3>
+{% endif %}
+{% endblock %}

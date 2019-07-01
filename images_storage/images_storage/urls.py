@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf import settings
+from django.shortcuts import redirect
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -25,6 +26,7 @@ from users import views as users_views
 
 urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
+    path('', lambda x: redirect('/main')),
     path('main/', include('main.urls')),
     path('admin/', admin.site.urls),
     path('register/', users_views.register, name='register'),

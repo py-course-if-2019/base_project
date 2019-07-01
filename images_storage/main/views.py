@@ -1,3 +1,4 @@
+import time
 from importlib.resources import Package
 
 from django.http import request
@@ -5,6 +6,8 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from .models import Image
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+from .tasks import add
 
 
 def main(request):
@@ -33,4 +36,9 @@ class ImageListView(ListView):
 
         context['image_list'] = image_list
         return context
+
+
+def test(request):
+    add.delay(1, 2)
+    return render(request, 'main/index.html')
 

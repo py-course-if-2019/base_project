@@ -4,10 +4,10 @@ import io
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
-def processed(Image_id, scale = 50):
+def process_image(image_id, scale=50):
 
     try:
-        original = Image.objects.get(id=Image_id)
+        original = Image.objects.get(pk=image_id)
         path_in = original.original_image
 
         img_io = io.BytesIO()
@@ -23,13 +23,11 @@ def processed(Image_id, scale = 50):
         new_size = original_image.resize(size)
         new_size.save(img_io, format='JPEG')
 
-
         image_file = InMemoryUploadedFile(img_io, None, f'{name}_{size[0]}_{size[1]}.{ext}', 'image/jpeg',
                                           img_io.tell, None)
         original.resize_image.save(f'{name}_{size[0]}_{size[1]}.{ext}', image_file)
 
         original.save()
-
 
     except FileNotFoundError:
         print("File not found")

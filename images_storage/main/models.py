@@ -1,6 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+# from .tasks import process_image
 
 
 class Image(models.Model):

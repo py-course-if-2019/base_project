@@ -6,3 +6,4 @@ django-bootstrap4==0.0.8
 social-auth-app-django
 redis
 dj-database-url
+psycopg2

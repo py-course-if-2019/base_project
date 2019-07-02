@@ -7,7 +7,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'images_storage.settings')
 
 app = Celery('images_storage')
 
-app.conf.broker_url = 'redis://localhost:6379/0'
+app.conf.update(BROKER_URL=os.environ.get('REDIS_URL', 'redis://localhost:6379/0'),
+                CELERY_RESULT_BACKEND=os.environ.get('REDIS_URL', 'redis://localhost:6379/0'))
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

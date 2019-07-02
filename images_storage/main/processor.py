@@ -9,7 +9,8 @@ def process_image(image_id, scale=50):
 
     try:
         original = Image.objects.get(pk=image_id)
-        path_in = original.original_image
+        path_in = original.original_image.path
+        print(path_in)
 
         img_io = io.BytesIO()
         original_image = Im.open(path_in)

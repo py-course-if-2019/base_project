@@ -25,7 +25,7 @@ SECRET_KEY = 'r770dq)jndd-nt7!bj7kls3euqmxy8ld$g@ss2_*6+mw09))$i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fathomless-depths-15646.herokuapp.com', '0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['fathomless-depths-15646.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
 
 # Application definition
 

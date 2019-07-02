@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.wsgi --log-file -
+web: images_storage/manage.py migrate && python images_storage/manage.py runserver

@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'images_storage.wsgi.application'
 
 if os.environ.get('PROD', 'false') == 'true':
     DATABASES = {
-        'default': dj_database_url.config(os.environ['DATABASE_URL'], engine='django.db.backends.postgresql_psycopg2')
+        'default': dj_database_url.parse(os.environ['DATABASE_URL'])
     }
 else:
     DATABASES = {

@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="cont">
-<form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">{% csrf_token %}
-
-    <input type="file" name="files" multiple />
-    <input type="submit" value="upload" />
-</form>
 <div class="main-block">
+    <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}">{% csrf_token %}
+    <label for="file-upload" class="custom-file-upload">
+    Вибрати зображення
+    </label>
+    <input id="file-upload" name="files" type="file" multiple/><br>
+        <input type="submit" id="upload" class="btn-b" value="Завантажити" />
+</form>
 
-<button class="btn-b">
-    Загрузити фотографію
-</button>
 </div>
     </div>
 {% endblock %}

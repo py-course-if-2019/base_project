@@ -8,6 +8,7 @@
      <a href="{{ img.original_image.url }}">
        <img src="{{ img.original_image.url }}" alt="">
      </a>
+     <a href="{{img.resize_image.url}} " class="resize">Ссилка на оброблене зображення</a>
  </div>
 {%endfor%}
 </div>
@@ -25,6 +26,6 @@
 {% endif %}
 {% else %}
         </div>
-    <h3>END</h3>
+
 {% endif %}
 {% endblock %}

@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView
 from .models import Image
 from django.forms import ModelForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import redirect
 
 from .tasks import add
 from .models import Image
@@ -20,16 +21,18 @@ class ImageUploadForm(ModelForm):
 
 
 class ImageUploadView(View):
+
     model = Image
 
     def post(self, request, *args, **kwargs):
         if self.request.FILES:
             for f in self.request.FILES.getlist('files'):
                 obj = self.model.objects.create(original_image=f)
+        # return render(request, 'main/index.html')
+        return redirect('images')
 
     def get(self, request, *args, **kwargs):
         return render(request, 'main/index.html')
-
 
 class ImageListView(ListView):
     model = Image

@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'images_storage.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-if os.environ.get('PROD', 'no') == 'yes':
+if os.environ.get('PROD', 'false') == 'true':
     DATABASES = {
         'default': dj_database_url.config(os.environ['DATABASE_URL'])
     }

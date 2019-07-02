@@ -25,14 +25,15 @@ class ImageUploadView(View):
     model = Image
 
     def post(self, request, *args, **kwargs):
-        if self.request.FILES:
+        if request.user.is_authenticated and self.request.FILES:
             for f in self.request.FILES.getlist('files'):
-                obj = self.model.objects.create(original_image=f)
+                obj = self.model.objects.create(original_image=f, user=request.user)
         # return render(request, 'main/index.html')
         return redirect('images')
 
     def get(self, request, *args, **kwargs):
         return render(request, 'main/index.html')
+
 
 class ImageListView(ListView):
     model = Image
@@ -41,8 +42,8 @@ class ImageListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ImageListView, self).get_context_data(**kwargs)
-        image_list = Image.objects.all()
-        paginator = Paginator(image_list, self.paginate_by)
+        object_list = Image.objects.filter(user=self.request.user)
+        paginator = Paginator(object_list, self.paginate_by)
 
         page = self.request.GET.get('page')
 
@@ -53,7 +54,7 @@ class ImageListView(ListView):
         except EmptyPage:
             image_list = paginator.page(paginator.num_pages)
 
-        context['image_list'] = image_list
+        context['object_list'] = image_list
         return context
 
 

@@ -4,3 +4,4 @@ Celery==4.3.0
 django-crispy-forms==1.7.2
 django-bootstrap4==0.0.8
 social-auth-app-django
+redis

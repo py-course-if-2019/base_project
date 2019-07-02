@@ -7,4 +7,5 @@ urlpatterns = [
     path('images/', views.ImageListView.as_view(), name='images'),
     path('test/', views.test, name='test'),
     path('upload/', views.ImageUploadView.as_view(), name='upload')
+
 ]

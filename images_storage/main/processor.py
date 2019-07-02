@@ -4,6 +4,7 @@ import io
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
+
 def process_image(image_id, scale=50):
 
     try:
@@ -20,8 +21,8 @@ def process_image(image_id, scale=50):
         saved, file_name = original.original_image.name.split('/')
         name, ext = file_name.split('.')
 
-        new_size = original_image.resize(size)
-        new_size.save(img_io, format='JPEG')
+        new_size = original_image.convert('RGB').resize(size)
+        new_size.save(img_io, format=ext)
 
         image_file = InMemoryUploadedFile(img_io, None, f'{name}_{size[0]}_{size[1]}.{ext}', 'image/jpeg',
                                           img_io.tell, None)

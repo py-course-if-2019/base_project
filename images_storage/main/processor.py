@@ -30,8 +30,8 @@ def process_image(image_id, scale=50):
 
         original.save()
 
-    except FileNotFoundError:
-        print("File not found")
+    except FileNotFoundError as e:
+        print(repr(e))
 
 
 

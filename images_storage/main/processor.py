@@ -22,11 +22,11 @@ def process_image(image_id, scale=50):
         name, ext = file_name.split('.')
 
         new_size = original_image.convert('RGB').resize(size)
-        new_size.save(img_io, format=ext)
+        new_size.save(img_io, 'jpeg')
 
-        image_file = InMemoryUploadedFile(img_io, None, f'{name}_{size[0]}_{size[1]}.{ext}', 'image/jpeg',
+        image_file = InMemoryUploadedFile(img_io, None, f'{name}_{size[0]}_{size[1]}.jpeg', 'image/jpeg',
                                           img_io.tell, None)
-        original.resize_image.save(f'{name}_{size[0]}_{size[1]}.{ext}', image_file)
+        original.resize_image.save(f'{name}_{size[0]}_{size[1]}.jpeg', image_file)
 
         original.save()
 

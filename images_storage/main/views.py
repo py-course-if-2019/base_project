@@ -5,9 +5,9 @@ from .models import Image
 from django.forms import ModelForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import redirect
-
 from .tasks import add
 from .models import Image
+
 
 
 def main(request):
@@ -19,7 +19,6 @@ class ImageUploadForm(ModelForm):
         model = Image
         fields = ['original_image']
 
-
 class ImageUploadView(View):
 
     model = Image
@@ -28,8 +27,9 @@ class ImageUploadView(View):
         if request.user.is_authenticated and self.request.FILES:
             for f in self.request.FILES.getlist('files'):
                 obj = self.model.objects.create(original_image=f, user=request.user)
-        # return render(request, 'main/index.html')
-        return redirect('images')
+            return redirect('images')
+        else:
+            return redirect('register')
 
     def get(self, request, *args, **kwargs):
         return render(request, 'main/index.html')
@@ -56,6 +56,7 @@ class ImageListView(ListView):
 
         context['object_list'] = image_list
         return context
+
 
 
 def test(request):

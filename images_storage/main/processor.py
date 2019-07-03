@@ -8,6 +8,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 def process_image(image_id, scale=50):
 
     try:
+
         original = Image.objects.get(pk=image_id)
         path_in = original.original_image.path
         print(path_in)

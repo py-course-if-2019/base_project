@@ -102,7 +102,11 @@
     <header>
         <div class="sub-block">
         <a href="{% url 'main' %}">Головна</a>
+        {% if user.is_authenticated %}
         <a href="{% url 'images' %}">Всі зображення</a>
+        {%else%}
+            <a href="{% url 'register' %}">Всі зображення</a>
+        {%endif%}
         </div>
         <div class="sub-block">
         {% if user.is_authenticated %}
